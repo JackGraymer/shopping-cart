@@ -1,0 +1,60 @@
+/* /home.js */
+
+.home{
+    height: 100%;
+    background-image: url('./background.jpeg') ;
+    background-size:cover;
+    background-position:center;
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .half{
+    color: rgb(49, 49, 49);
+    height: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .title{
+    padding-left: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .title>*{
+    text-align: center;
+  }
+  
+  .products-btn{
+    padding: 1em 2em;
+    margin:1em;
+    background-color: rgba(14, 153, 153, 0.596);
+    outline: none;
+    border: none;
+    border-radius: 0.5em;
+    font-weight: bolder;
+    font-size: larger;
+  }
+
+  /* /products.js */
+.products{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(233,232,240,255);
+}
+
+  /* /contact.js */
+
+  .contact{
+    background: rgb(238,238,238);
+background: linear-gradient(90deg, rgba(233,232,240,255) , rgba(210,210,210,255));
+    height: 100%;
+    width: 100%;
+  }
