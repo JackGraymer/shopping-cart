@@ -8,7 +8,7 @@ const Home = () => {
             <div className="half">
                 <div className="title">
                     <h1> Where Technology Becomes Houseware</h1>
-                    <h2> Get the gadgets tha you need in one place</h2>
+                    <h2> Get the gadgets that you need in one place</h2>
                     <h3> This company has a simple goal, to make all your tech needs available. <br/>
                     <hr></hr>
                     We work hard to make your life as easy and comfortable as possible. </h3>

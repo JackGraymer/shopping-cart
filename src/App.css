@@ -14,7 +14,7 @@
 }
 
 .nav-links{
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   height: 100%;
   display: flex;

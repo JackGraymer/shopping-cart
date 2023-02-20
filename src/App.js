@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom';
 import Home from './components/home';
@@ -33,12 +32,12 @@ const Header = () => {
   )
 }
 
-let jsonData = function() {
+/* let jsonData = function() {
   fetch('https://dummyjson.com/products')
   .then(res => res.json())
   .then(console.log)
 
-}
+} */
 
 
 
