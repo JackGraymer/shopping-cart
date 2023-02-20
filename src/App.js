@@ -32,16 +32,4 @@ const Header = () => {
   )
 }
 
-/* let jsonData = function() {
-  fetch('https://dummyjson.com/products')
-  .then(res => res.json())
-  .then(console.log)
-
-} */
-
-
-
-
-
 export default App
-
