@@ -25,7 +25,6 @@ const Products = () => {
     return(
         <div className="products">
             <div className="list">
-                 <button onClick={logger}>Hello Products</button>
                 {data && data.map((item) => (
                     <div className='item' key={crypto.randomUUID()} itemID={item.id}> 
                         <div className="image"> 
@@ -33,18 +32,26 @@ const Products = () => {
                         </div>
                         <div className="text">
                             <h3>{item.title}</h3>
+                            <p>{item.description}</p>
+                            <div>
+                                <h3>{item.price}$</h3>
+                                <button className="purchase">Add to Cart</button>
+                            </div>
                         </div>
                     </div>
-                    
-                )) }     
-            </div>            
-            
+                )) }  
+                   <Cart/>
+            </div>               
         </div>
     )
 
 }
 
-
+const Cart = () => {
+    return(
+        <button className="cart-btn"> <p>🛒&nbsp;</p> <p className="cart-number">1</p></button>
+    )
+}
 
   
 
