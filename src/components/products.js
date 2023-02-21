@@ -3,27 +3,35 @@ import './components.css'
 
 
 const Products = () => {
+    //state
     const [data, setData] = useState(false)
+    const [cartHide, setCartHide] = useState('none')
 
-    const logger = function () {
-        console.log(data)
-      }
 
-     
-      let jsonData = async () => {
+    //Fetches objects to display in product list
+    let jsonData = async () => {
         const response = await fetch('https://dummyjson.com/products?limit=10')
         .then((res) => res.json())    
         setData(response.products )
-        console.log('fetch', data)
-      
-      }
+        console.log('fetch', data) 
+    }
 
+    function hideCart () {
+        if(cartHide === 'none'){
+            setCartHide('')
+        }else{
+            setCartHide('none')
+        }
+    }
+
+    //Renders when fetch is completed
       useEffect(() => {
         jsonData();
       }, []);
-
-    return(
-        <div className="products">
+    
+    //Displays list of objects 
+    const List = () =>{
+        return(
             <div className="list">
                 {data && data.map((item) => (
                     <div className='item' key={crypto.randomUUID()} itemID={item.id}> 
@@ -40,18 +48,31 @@ const Products = () => {
                         </div>
                     </div>
                 )) }  
-                   <Cart/>
-            </div>               
+                <button className="cart-btn" onClick={hideCart}> <p>🛒&nbsp;</p> <p className="cart-number">1</p></button>
+                <Cart/>
+            </div>  
+        )
+    }
+    
+    const Cart = () => {
+        return(
+            <div className="cart" style={{display:cartHide}}>
+                <div className="cart-list">
+                    <button className="cart-close-btn" onClick={hideCart}><h1>❌</h1></button>
+                </div>
+            </div>
+        )
+    }
+
+    return(
+        <div className="products">  
+            <List/>                       
         </div>
     )
 
 }
 
-const Cart = () => {
-    return(
-        <button className="cart-btn"> <p>🛒&nbsp;</p> <p className="cart-number">1</p></button>
-    )
-}
+
 
   
 
