@@ -6,10 +6,8 @@ const Products = () => {
     //state
     const [data, setData] = useState(false)
     const [cartHide, setCartHide] = useState('none')
-    const [cart, setCart] = useState({
-        products:[],
-        total:''
-    })
+    const [cart, setCart] = useState([])
+    const [total, setTotal] = useState(0)
 
 
     //Fetches objects to display in product list
@@ -30,14 +28,16 @@ const Products = () => {
 
     //Adds products to Cart
     function addToCart(e){
-        console.log('added to cart')
-        console.log(cart)
+        /* console.log('added to cart')*/
         let object = e.target.parentNode.parentNode.firstChild.textContent
-        object = data.find(element => element.title = object)
+        object = data.find(element => element.title === object)
         //console.log(object)
-        setCart({...cart, products:[...cart.products, object]})
-        console.log(cart.products.length)
+        setCart([...cart, object])
+        //console.log(cart.products.length)
         //setCart({...cart, number: cart.products.length })
+        console.log(cart) 
+
+        
     }
 
     //Renders when fetch is completed
@@ -45,9 +45,17 @@ const Products = () => {
     jsonData();
     }, []);
 
-    
+    //Renders total value of the Chart
+    useEffect(() => {
+        let sum = 0
+        cart.map((item) => (
+            sum += item.price
+        ))
+        setTotal(sum)
+        console.log(total)
+    },[cart])
 
-    //Displays list of objects 
+    //Displays list of products 
     const List = () =>{
         return(
             <div className="list">
@@ -66,7 +74,7 @@ const Products = () => {
                         </div>
                     </div>
                 )) }  
-                <button className="cart-btn" onClick={hideCart}> <p>🛒&nbsp;</p> <p className="cart-number">{cart.products.length}</p></button>
+                <button className="cart-btn" onClick={hideCart}> <p>🛒&nbsp;</p> <p className="cart-number">{cart.length}</p></button>
                 <Cart/>
             </div>  
         )
@@ -76,8 +84,23 @@ const Products = () => {
         return(
             <div className="cart" style={{display:cartHide}}>
                 <div className="cart-list">
-                    <button className="cart-close-btn" onClick={hideCart}><h1>❌</h1></button>
-                    <div className="cart-products"></div>
+                    <div className="cart-header">
+                        <h1>Shopping Cart</h1> 
+                        <button className="cart-close-btn" onClick={hideCart}><h1>❌</h1></button>
+                    </div>                    
+                    <div className="cart-products">
+                        {
+                            cart.map((product) => (
+                                <div key={crypto.randomUUID()}>{product.title}</div>
+                               
+                            ))
+                            
+                        }
+                    </div>
+                    <div className="cart-footer">
+                        <h3>Total: {total}$</h3>
+                        <button className="cart-confirm-btn">To Checkout</button>
+                    </div>
                 </div>
             </div>
         )
