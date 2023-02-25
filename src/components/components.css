@@ -74,7 +74,11 @@
   gap: 2em;
 }
 
-.image img{
+.image{
+  overflow: hidden;
+}
+
+.image>img{
   background-color: rgb(22, 22, 22);
   object-fit: contain;
   width: 100%;
@@ -135,6 +139,7 @@
 }
 
 .cart{
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,7 +154,7 @@
 .cart-list{
   padding: 1em;
   position: relative;
-  width: 50%;
+  width: clamp(600px, 50%, 850px);
   height: 80%;
   background-color: red;
   display: grid;
@@ -178,9 +183,33 @@
 }
 
 .cart-products{
-
+  height: 100%;
+  display: grid;
+  gap: 1em;
+  grid-auto-rows: 20%;
+  overflow: auto;
 }
 
+.cart-card{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1em;
+}
+
+.card-image{
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  background-color: aliceblue;
+  height: 100%;
+  soverflow: auto;
+}
+.card-image>img{
+  height: 100%;
+  width: 100%;
+  object-fit:contain;
+  overflow: hidden;
+} 
 .cart-footer{
   display: flex;
   align-items: center;
