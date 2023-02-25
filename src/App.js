@@ -3,6 +3,7 @@ import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom';
 import Home from './components/home';
 import Products from './components/products';
 import Contact from './components/contact';
+import { useEffect, useState } from 'react';
 
 function App() {
   return(

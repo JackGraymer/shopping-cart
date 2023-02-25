@@ -4,7 +4,7 @@ import './components.css'
 
 const Products = () => {
     //state
-    const [data, setData] = useState(false)
+    const [data, setData] = useState(0)
     const [cartHide, setCartHide] = useState('none')
     const [cart, setCart] = useState([])
     const [total, setTotal] = useState(0)
@@ -29,22 +29,43 @@ const Products = () => {
     function addToCart(e){
         let object = e.target.parentNode.parentNode.firstChild.textContent
         object = data.find(element => element.title === object)
-
+        console.log(e.target.type)
         //If product already in cart, increase amount
 
         if(cart.find(item => item.id === object.id)){
             console.log('amount + 1') 
             cart.map((item) => {
                 if(object.id === item.id){
-                    item.amount++
+                    console.log(e.target.textContent)
+                    if(e.target.textContent === '+' || e.target.textContent === 'Add to Cart'){
+                        item.amount++
                     setCart([...cart])
-                }
+                    
+                    }else if(e.target.textContent === '-'){
+                        item.amount--
+                        setCart([...cart])
+                    }else if(e.target.type === 'number'){
+                        item.amount = Number(e.target.value)
+                        setCart([...cart])
+                    }
+                } 
             })
-    
         }else{
             object.amount = 1
         setCart([...cart, object])
         }
+    }
+
+    function deleteFromCart(){
+        cart.map((item) => {
+            if(item.amount <= 0){
+            console.log('delete item')
+            let newcart = [...cart]
+            newcart = newcart.filter((f) => f !== item)
+            console.log('new cart',newcart)
+            setCart(newcart)
+            }
+        })
     }
 
     //Renders when fetch is completed
@@ -60,6 +81,7 @@ const Products = () => {
             sum += item.price * item.amount
             totalItems += item.amount
         })
+        deleteFromCart()
         setTotal(sum)
         setTotalItems(totalItems)
         console.log(totalItems, total, cart)
@@ -108,9 +130,9 @@ const Products = () => {
                                         <h3>Price: {product.price} $</h3>
 
                                         <div>
-                                            <button className="card-btn">-</button>
-                                            <input type='number' defaultValue={product.amount}></input>
-                                            <button className="card-btn">+</button>
+                                            <button className="card-btn" onClick={addToCart}>-</button>
+                                            <input type='number' defaultValue={product.amount} onBlur={addToCart} ></input>
+                                            <button className="card-btn" onClick={addToCart}>+</button>
                                         </div> 
                                     </div>
                                     
