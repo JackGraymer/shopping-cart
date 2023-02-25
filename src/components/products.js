@@ -8,6 +8,7 @@ const Products = () => {
     const [cartHide, setCartHide] = useState('none')
     const [cart, setCart] = useState([])
     const [total, setTotal] = useState(0)
+    const [totalItems, setTotalItems] = useState(0)
     //Fetches objects to display in product list
     let jsonData = async () => {
         const response = await fetch('https://dummyjson.com/products?limit=10')
@@ -51,14 +52,17 @@ const Products = () => {
     jsonData();
     }, []);
 
-    //Renders total value of the Chart
+    //Renders total value of the Chart and cart icon amount
     useEffect(() => {
         let sum = 0
-        cart.map((item) => (
+        let totalItems = 0
+        cart.map((item) => {
             sum += item.price * item.amount
-        ))
+            totalItems += item.amount
+        })
         setTotal(sum)
-        console.log(total, cart)
+        setTotalItems(totalItems)
+        console.log(totalItems, total, cart)
     },[cart])
 
     //Displays list of products 
@@ -80,7 +84,7 @@ const Products = () => {
                         </div>
                     </div>
                 )) }  
-                <button className="cart-btn" onClick={hideCart}> <p>🛒&nbsp;</p> <p className="cart-number">{cart.length}</p></button>
+                <button className="cart-btn" onClick={hideCart}> <p>🛒&nbsp;</p> <p className="cart-number">{totalItems}</p></button>
                 <Cart/>
             </div>  
         )
@@ -100,7 +104,9 @@ const Products = () => {
                                 <div key={crypto.randomUUID()} className='cart-card'>
                                     <div className="card-image" style={{backgroundImage:`url(${product.thumbnail})`}}> {/* <img src={product.thumbnail}></img> */}</div>
                                     <div className="card-text">
-                                        {product.title}
+                                        <h2>{product.title}</h2>
+                                        <h3>Price: {product.price} $</h3>
+
                                         <div>
                                             <button className="card-btn">-</button>
                                             <input type='number' defaultValue={product.amount}></input>

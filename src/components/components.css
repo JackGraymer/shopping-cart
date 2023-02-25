@@ -197,19 +197,28 @@
 }
 
 .card-image{
-  background-size: cover;
+  background-size:contain;
+  background-repeat: no-repeat;
   background-position: center;
   width: 100%;
   background-color: aliceblue;
   height: 100%;
-  soverflow: auto;
+  overflow: hidden;
 }
 .card-image>img{
   height: 100%;
   width: 100%;
   object-fit:contain;
-  overflow: hidden;
+  overflow: auto;
 } 
+.card-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-text>*{
+  margin: 0;
+}
 .cart-footer{
   display: flex;
   align-items: center;
