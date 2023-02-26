@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   return(
-    <BrowserRouter>
+    <BrowserRouter basename="/shopping-cart">
     <Header/>
       <div className='main'>
         <Routes>
