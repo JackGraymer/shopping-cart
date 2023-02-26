@@ -4,7 +4,7 @@ import './components.css'
 
 const Products = () => {
     //state
-    const [data, setData] = useState(0)
+    const [data, setData] = useState(null)
     const [cartHide, setCartHide] = useState('none')
     const [cart, setCart] = useState([])
     const [total, setTotal] = useState(0)
@@ -129,9 +129,9 @@ const Products = () => {
                                         <h2>{product.title}</h2>
                                         <h3>Price: {product.price} $</h3>
 
-                                        <div>
+                                        <div className="card-amount">
                                             <button className="card-btn" onClick={addToCart}>-</button>
-                                            <input type='number' defaultValue={product.amount} onBlur={addToCart} ></input>
+                                            <input type='number' defaultValue={product.amount} onBlur={addToCart} className='card-input'></input>
                                             <button className="card-btn" onClick={addToCart}>+</button>
                                         </div> 
                                     </div>
